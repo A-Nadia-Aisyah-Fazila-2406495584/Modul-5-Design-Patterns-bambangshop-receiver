@@ -96,7 +96,21 @@ This is the place for you to write reflections:
 
 #### Reflection Subscriber-2
 **1. Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.**
+- Yes. Saya sempat explore `src/lib.rs`. Disana saya mempelajari beberapa hal yang diantaranya adalah:
+    - `APP_CONFIG` = lazy static yang menyimpan konfigurasi app. Konfigurasi-konfigurasi tersebut dibaca dari `.env` sehingga bisa membuat beberapa instance receiver dengan kofigurasi yang berbeda-beda hanya dengan mengubah nilai di `.env` nya.
+    - `compose_error_response` dan tipe `Result` = helper untuk menyeragamkan format error response di seluruh app, sehingga controller tidak perlu mendefiniksikan error handling sendiri masing-masing.
 
 **2. Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than one instance of Main app, will it still be easy enough to add to the system?**
+- `Observer pattern` sangat memudahkan penambahan subscriber baru karena publisher tidak peduli siapa saja subscribernya secara spesifik. Publisher hanya menyimpan daftar URL dan mengirimkan notifikasi ke semua yang terdaftar sehingga untuk menambahkan subsriber baru, cukup untuk melakukan satu HTTP POST dan tidak perlu ada perubahan kode di publisher.
+- Spawning more than one instance of Main app jadi lebih kompleks. Karena `SUBSCRIBERS` disimpan sebagai in memory static variable `(lazy_static! DashMap)`, tiap instance main app punya state sendiri yang terpisah dan tidak di share. Jika subscriber mendaftar ke instance main app pertama maka instance main app yang kedua tidak tahu keberadaan subsciber tersebut sehingga notifikasi dari instance kedua tidak terkirim ke subscriber tersebut. Untuk mengatasinya dapat menggunakan shared external storage sebagai single source of truth untuk data subscriber. 
+- Intinya, menambahkan instance subsriber masih mudah tapi menambahakan instance main app lebih kompleks karena butuh untuk melakukan perubahan arsitekturnya. 
 
 **3. Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).**
+Yes, saya sudah mencoba untuk 
+1. Make my own tests. Di setiap request saya menambahkan script  di tab Tests postman. Seperti, mengecek bahwa status code 200 atau 201 dan melakukan verifikasi bahwa response body mengandung field yang diharapkan. Itu berguna karena jadi bisa langsung tau bahwa endpoint berfungsi sesuai harapan tanpa perlu cek response secara manual.
+2. Enhance documentation on my postman collection. Saya menambahkan description pada tiap request, menjelaskan:
+    - apa yang dilakukan oleh endpoint tersebut
+    - parameter apa yang dibutuhkan
+    - contoh response yang diharapkan. 
+Itu sangat membantu untuk group project karena saya bisa langsung memahami cara menggunakan API yang dibuat oleh teman sekelompok saya tanpa perlu membaca kodenya dengan detail ataupun bertanya pada pembuat API nya.
+

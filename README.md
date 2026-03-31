@@ -106,11 +106,11 @@ This is the place for you to write reflections:
 - Intinya, menambahkan instance subsriber masih mudah tapi menambahakan instance main app lebih kompleks karena butuh untuk melakukan perubahan arsitekturnya. 
 
 **3. Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).**
-Yes, saya sudah mencoba untuk 
-1. Make my own tests. Di setiap request saya menambahkan script  di tab Tests postman. Seperti, mengecek bahwa status code 200 atau 201 dan melakukan verifikasi bahwa response body mengandung field yang diharapkan. Itu berguna karena jadi bisa langsung tau bahwa endpoint berfungsi sesuai harapan tanpa perlu cek response secara manual.
-2. Enhance documentation on my postman collection. Saya menambahkan description pada tiap request, menjelaskan:
-    - apa yang dilakukan oleh endpoint tersebut
-    - parameter apa yang dibutuhkan
-    - contoh response yang diharapkan. 
-Itu sangat membantu untuk group project karena saya bisa langsung memahami cara menggunakan API yang dibuat oleh teman sekelompok saya tanpa perlu membaca kodenya dengan detail ataupun bertanya pada pembuat API nya.
+- Yes, saya sudah mencoba untuk 
+    1. Make my own tests. Di setiap request saya menambahkan script  di tab Tests postman. Seperti, mengecek bahwa status code 200 atau 201 dan melakukan verifikasi bahwa response body mengandung field yang diharapkan. Itu berguna karena jadi bisa langsung tau bahwa endpoint berfungsi sesuai harapan tanpa perlu cek response secara manual.
+    2. Enhance documentation on my postman collection. Saya menambahkan description pada tiap request, menjelaskan:
+        - apa yang dilakukan oleh endpoint tersebut
+        - parameter apa yang dibutuhkan
+        - contoh response yang diharapkan. 
+- Itu sangat membantu untuk group project karena saya bisa langsung memahami cara menggunakan API yang dibuat oleh teman sekelompok saya tanpa perlu membaca kodenya dengan detail ataupun bertanya pada pembuat API nya.
 

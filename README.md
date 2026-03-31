@@ -66,7 +66,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Create Notification database and Notification repository struct skeleton.`
     -   [x] Commit: `Implement add function in Notification repository.`
     -   [x] Commit: `Implement list_all_as_string function in Notification repository.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
 -   **STAGE 3: Implement services and controllers**
     -   [x] Commit: `Create Notification service struct skeleton.`
     -   [x] Commit: `Implement subscribe function in Notification service.`
@@ -86,8 +86,13 @@ This is the place for you to write reflections:
 
 #### Reflection Subscriber-1
 **1. In this tutorial, we used RwLock<> to synchronise the use of Vec of Notifications. Explain why it is necessary for this case, and explain why we do not use Mutex<> instead?**
+- Karena operasi untuk membaca daftar notifikasi (read) lebih sering terjadi dibanadingkan dengan operasi untuk menambahkan notifikasi baru (write). 
+- `RwLock<>` memungkinkan banyak thread read secara bersamaan selama tidak ada yang write. Sehingga dengan menggunakan `RwLock<>`, throghput untuk read jadi lebih tinggi.
+- `Mutex` hanya memungkinkan satu thread untuk read ataupun write dalam satu waktu, sehingga dengan `Mutex` operasi read jadi tidak bisa berjalan secara paralel .
 
 **2. In this tutorial, we used lazy_static external library to define Vec and DashMap as a “static” variable. Compared to Java where we can mutate the content of a static variable via a static function, why did not Rust allow us to do so?**
+- Untuk thread safety. `static` pada rust bersifat global dan bisa untuk diakses dari banyak thread sekaligus. Jika `static` mutable maka akan terjadi data race yaitu dimana dua atau lebih thread mengubah data yang sama secara bersamaan yang akan membuat undefined behavior. 
+- Berbeda dengan di java, thread safety dipertanggungjawabkan ke programmar, sedangkan di rust di level compiler.
 
 #### Reflection Subscriber-2
 **1. Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.**
